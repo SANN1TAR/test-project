@@ -1,0 +1,8 @@
+VERSIONS.txt — счётчик версий проекта test-project
+========================================================
+
+v0.1 — первый коммит: змейка (index.html), Metro Jump (stalker-jump.html), гайд (guide.html), CLAUDE.md, PHRASES.txt
+v0.2 — добавлены DOCS.txt и SESSION_LOG.txt, настроена документация и память сессий
+v0.3 — CLAUDE.md обновлён: правило документации сделано жёстким, добавлено правило для подсистем
+v0.4 — подключён GitHub: репозиторий SANN1TAR/test-project, первый пуш на main
+v0.5 — создан VERSIONS.txt (этот файл)
