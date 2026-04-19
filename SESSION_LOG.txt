@@ -32,3 +32,16 @@ SESSION_LOG.txt — Память сессий проекта test-project
 — CLAUDE.md обновлён, правила зафиксированы
 — VERSIONS.txt всё ещё не создан
 — Ждём следующей задачи
+
+[2026-04-19] — подключение GitHub
+— Установлен gh CLI через winget
+— Настроен git global: user.name = SANN1TAR, email = artemis9774860374@gmail.com
+— Сгенерирован SSH ключ ed25519, добавлен в GitHub
+— gh auth login выполнен через браузер, аккаунт SANN1TAR подключён
+— Создан репозиторий https://github.com/SANN1TAR/test-project
+— Сделан первый коммит, все файлы запушены на main
+— В CLAUDE.md добавлено правило: GitHub + коммиты делаются автоматически
+
+На чём остановились:
+— Проект на GitHub, всё настроено
+— Ждём следующей задачи от Санитара
