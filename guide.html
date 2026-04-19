@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Гайд по Вайб-кодингу</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0f0f1a;
+      color: #d0d0d0;
+      font-family: 'Courier New', monospace;
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: #4ecca3;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #888;
+      margin-bottom: 40px;
+      font-size: 0.95rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      color: #e94560;
+      margin: 35px 0 12px;
+      border-left: 4px solid #e94560;
+      padding-left: 12px;
+    }
+
+    h3 {
+      color: #4ecca3;
+      margin: 20px 0 8px;
+      font-size: 1.05rem;
+    }
+
+    p { margin-bottom: 10px; }
+
+    .card {
+      background: #161628;
+      border: 1px solid #2a2a4a;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin: 16px 0;
+    }
+
+    .card:hover {
+      border-color: #4ecca3;
+      transition: border-color 0.2s;
+    }
+
+    .tip-number {
+      display: inline-block;
+      background: #4ecca3;
+      color: #0f0f1a;
+      font-weight: bold;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 10px;
+      font-size: 0.85rem;
+    }
+
+    .highlight {
+      background: #1e2d50;
+      border-left: 3px solid #4ecca3;
+      padding: 12px 16px;
+      border-radius: 4px;
+      margin: 12px 0;
+      font-size: 0.95rem;
+    }
+
+    .bad { border-left-color: #e94560; background: #2d1e1e; }
+    .good { border-left-color: #4ecca3; background: #1e2d1e; }
+
+    .label {
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .label.red { color: #e94560; }
+    .label.green { color: #4ecca3; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+
+    .tag {
+      display: inline-block;
+      background: #1e2d50;
+      color: #4ecca3;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      margin: 3px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #555;
+      font-size: 0.85rem;
+    }
+
+    a { color: #4ecca3; }
+
+    .nav-link {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 24px;
+      background: #e94560;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .nav-link:hover { background: #c73550; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <h1>⚡ Гайд по Вайб-кодингу</h1>
+  <p class="subtitle">Как работать с Claude Code даже если ты полный ноль в программировании</p>
+
+  <!-- ЧТО ТАКОЕ ВАЙБ-КОДИНГ -->
+  <h2>🤔 Что такое вайб-кодинг?</h2>
+  <div class="card">
+    <p><strong>Вайб-кодинг</strong> — это когда ты пишешь программы, общаясь с AI на обычном языке.
+    Ты говоришь ЧТО хочешь сделать, а AI пишет код за тебя.</p>
+    <p style="margin-top:10px; color:#888">
+      Придумал термин Андрей Карпатий (бывший директор AI в Tesla) в 2025 году.
+      Суть: <em>ты — архитектор идей, AI — строитель кода.</em>
+    </p>
+  </div>
+
+  <!-- КАК НАЧАТЬ -->
+  <h2>🚀 Как начать — шаги</h2>
+
+  <div class="card">
+    <span class="tip-number">1</span><strong>Открой Claude Code</strong>
+    <p style="margin-top:8px; color:#888">У тебя уже стоит — это и есть твой инструмент. Открывай проект и просто пиши.</p>
+  </div>
+
+  <div class="card">
+    <span class="tip-number">2</span><strong>Скажи что хочешь на русском</strong>
+    <p style="margin-top:8px; color:#888">Не нужно знать английский или программирование. Просто опиши идею как другу.</p>
+  </div>
+
+  <div class="card">
+    <span class="tip-number">3</span><strong>Открой файл в браузере</strong>
+    <p style="margin-top:8px; color:#888">Двойной клик на <code>index.html</code> → открывается в браузере → тестируешь → говоришь что поменять.</p>
+  </div>
+
+  <div class="card">
+    <span class="tip-number">4</span><strong>Повторяй итерации</strong>
+    <p style="margin-top:8px; color:#888">Вайб-кодинг = цикл: попросил → посмотрел → поправил → попросил снова. Так делают все, даже профи.</p>
+  </div>
+
+  <!-- КАК ПИСАТЬ ЗАПРОСЫ -->
+  <h2>✍️ Как писать запросы (промпты)</h2>
+
+  <div class="grid">
+    <div>
+      <div class="label red">❌ Плохо — слишком расплывчато</div>
+      <div class="highlight bad">"Сделай игру"</div>
+      <div class="highlight bad">"Добавь кнопку"</div>
+      <div class="highlight bad">"Измени цвет"</div>
+    </div>
+    <div>
+      <div class="label green">✅ Хорошо — конкретно</div>
+      <div class="highlight good">"Сделай игру Змейка в браузере с пиксельной графикой"</div>
+      <div class="highlight good">"Добавь кнопку Рестарт красного цвета под игровым полем"</div>
+      <div class="highlight good">"Измени фон на тёмно-синий #1a1a2e"</div>
+    </div>
+  </div>
+
+  <h3>📐 Формула хорошего запроса</h3>
+  <div class="highlight">
+    <strong>ЧТО</strong> сделать + <strong>КАК</strong> должно выглядеть + <strong>ГДЕ</strong> разместить
+    <br><br>
+    Пример: <em>"Добавь счётчик очков (белый текст, сверху по центру) который увеличивается на 1 каждый раз когда игрок прыгает на платформу"</em>
+  </div>
+
+  <!-- ТОП СОВЕТОВ -->
+  <h2>💡 Топ советов для работы с Claude</h2>
+
+  <div class="card">
+    <h3>🎯 Начинай с маленького</h3>
+    <p>Не проси сразу полную игру — попроси сначала просто нарисовать персонажа, потом добавить прыжок, потом платформы. Маленькие шаги = меньше ошибок.</p>
+  </div>
+
+  <div class="card">
+    <h3>🔁 Не бойся просить исправить</h3>
+    <p>Если что-то не так — просто скажи: <em>"Персонаж двигается слишком быстро, сделай помедленнее"</em> или <em>"Мне не нравится цвет, сделай темнее"</em>. Это нормальный процесс.</p>
+  </div>
+
+  <div class="card">
+    <h3>🧪 Тестируй после каждого изменения</h3>
+    <p>После любой правки — открывай браузер и смотри результат. Не копи 10 изменений сразу — это сложнее отлаживать.</p>
+  </div>
+
+  <div class="card">
+    <h3>📸 Описывай что видишь</h3>
+    <p>Если что-то сломалось — опиши что происходит: <em>"Кнопка есть, но при нажатии ничего не происходит"</em>. Чем точнее описание, тем быстрее починю.</p>
+  </div>
+
+  <div class="card">
+    <h3>💬 Задавай вопросы</h3>
+    <p>Не понимаешь что написано в коде? Спроси: <em>"Объясни что делает эта строчка"</em>. Я объясню на простом языке без терминов.</p>
+  </div>
+
+  <div class="card">
+    <h3>🌈 Давай примеры и референсы</h3>
+    <p>Называй игры, фильмы, сайты которые нравятся: <em>"Хочу как в Minecraft"</em>, <em>"Стиль как у Cyberpunk 2077"</em>. Это сильно помогает с визуалом.</p>
+  </div>
+
+  <!-- ЧЕГО НЕ БОЯТЬСЯ -->
+  <h2>😌 Чего не бояться</h2>
+  <div class="card">
+    <p><span class="tag">Ошибки</span> — это нормально, они решаемы</p>
+    <p style="margin-top:6px"><span class="tag">Не знать термины</span> — объясняй своими словами</p>
+    <p style="margin-top:6px"><span class="tag">Просить переделать</span> — это не глупо, так и работает вайб-кодинг</p>
+    <p style="margin-top:6px"><span class="tag">Задавать "глупые" вопросы</span> — глупых вопросов нет, есть неотвеченные</p>
+  </div>
+
+  <!-- СТРУКТУРА ПРОЕКТА -->
+  <h2>📁 Структура этого проекта</h2>
+  <div class="card">
+    <p>📄 <a href="index.html"><strong>index.html</strong></a> — Змейка (первая игра)</p>
+    <p style="margin-top:6px">📄 <a href="stalker-jump.html"><strong>stalker-jump.html</strong></a> — Сталкер-прыгалка в стиле постапока</p>
+    <p style="margin-top:6px">📄 <strong>guide.html</strong> — этот файл с инструкциями</p>
+  </div>
+
+  <a href="stalker-jump.html" class="nav-link">🎮 Играть в Сталкер-прыгалку →</a>
+
+  <footer>
+    <p style="margin-top:40px">Источники:
+      <a href="https://www.datacamp.com/blog/vibe-coding-guide-for-beginners" target="_blank">DataCamp</a> ·
+      <a href="https://www.hostinger.com/tutorials/how-to-start-vibe-coding" target="_blank">Hostinger</a> ·
+      <a href="https://code.claude.com/docs/en/best-practices" target="_blank">Claude Code Docs</a> ·
+      <a href="https://www.builder.io/blog/claude-code-tips" target="_blank">Builder.io</a>
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>

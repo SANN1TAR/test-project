@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Змейка</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a2e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      color: #eee;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #4ecca3;
+    }
+
+    #score-board {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: #e0e0e0;
+    }
+
+    canvas {
+      border: 3px solid #4ecca3;
+      border-radius: 8px;
+      background: #16213e;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #aaa;
+      text-align: center;
+    }
+
+    #start-btn {
+      margin-top: 15px;
+      padding: 10px 30px;
+      font-size: 1rem;
+      background: #4ecca3;
+      color: #1a1a2e;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #start-btn:hover {
+      background: #38b28d;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🐍 Змейка</h1>
+  <div id="score-board">Счёт: <span id="score">0</span> &nbsp;|&nbsp; Рекорд: <span id="best">0</span></div>
+  <canvas id="game" width="400" height="400"></canvas>
+  <div id="message">Нажми «Старт» или пробел, чтобы начать</div>
+  <button id="start-btn" onclick="startGame()">Старт</button>
+
+  <script>
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+    const scoreEl = document.getElementById('score');
+    const bestEl = document.getElementById('best');
+    const messageEl = document.getElementById('message');
+
+    const CELL = 20;           // размер одной клетки в пикселях
+    const COLS = canvas.width / CELL;   // 20 столбцов
+    const ROWS = canvas.height / CELL;  // 20 строк
+
+    let snake, dir, nextDir, food, score, best, gameLoop, running;
+
+    best = 0;
+
+    function startGame() {
+      // Начальное положение змейки — 3 клетки посередине
+      snake = [
+        { x: 12, y: 10 },
+        { x: 11, y: 10 },
+        { x: 10, y: 10 }
+      ];
+      dir = { x: 1, y: 0 };   // движение вправо
+      nextDir = { x: 1, y: 0 };
+      score = 0;
+      running = true;
+      scoreEl.textContent = 0;
+      messageEl.textContent = 'Управление: стрелки или WASD';
+
+      placeFood();
+      clearInterval(gameLoop);
+      gameLoop = setInterval(tick, 120); // один шаг каждые 120 мс
+    }
+
+    function placeFood() {
+      // Случайная свободная клетка для еды
+      let pos;
+      do {
+        pos = {
+          x: Math.floor(Math.random() * COLS),
+          y: Math.floor(Math.random() * ROWS)
+        };
+      } while (snake.some(s => s.x === pos.x && s.y === pos.y));
+      food = pos;
+    }
+
+    function tick() {
+      dir = nextDir;
+
+      // Новая голова
+      const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+
+      // Проверка столкновения со стеной
+      if (head.x < 0 || head.x >= COLS || head.y < 0 || head.y >= ROWS) {
+        return gameOver();
+      }
+
+      // Проверка столкновения с собой
+      if (snake.some(s => s.x === head.x && s.y === head.y)) {
+        return gameOver();
+      }
+
+      snake.unshift(head); // добавляем новую голову
+
+      // Съела еду?
+      if (head.x === food.x && head.y === food.y) {
+        score++;
+        scoreEl.textContent = score;
+        if (score > best) { best = score; bestEl.textContent = best; }
+        placeFood();
+      } else {
+        snake.pop(); // убираем хвост, если еды не было
+      }
+
+      draw();
+    }
+
+    function draw() {
+      // Фон
+      ctx.fillStyle = '#16213e';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Сетка (тонкая, для красоты)
+      ctx.strokeStyle = '#1e2d50';
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i <= COLS; i++) {
+        ctx.beginPath(); ctx.moveTo(i * CELL, 0); ctx.lineTo(i * CELL, canvas.height); ctx.stroke();
+      }
+      for (let j = 0; j <= ROWS; j++) {
+        ctx.beginPath(); ctx.moveTo(0, j * CELL); ctx.lineTo(canvas.width, j * CELL); ctx.stroke();
+      }
+
+      // Еда — красный кружок
+      ctx.fillStyle = '#e94560';
+      ctx.beginPath();
+      ctx.arc(food.x * CELL + CELL / 2, food.y * CELL + CELL / 2, CELL / 2 - 2, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Змейка
+      snake.forEach((seg, i) => {
+        // Голова ярче
+        ctx.fillStyle = i === 0 ? '#4ecca3' : '#2ea88a';
+        ctx.beginPath();
+        ctx.roundRect(seg.x * CELL + 1, seg.y * CELL + 1, CELL - 2, CELL - 2, 4);
+        ctx.fill();
+      });
+    }
+
+    function gameOver() {
+      running = false;
+      clearInterval(gameLoop);
+      messageEl.textContent = `Игра окончена! Счёт: ${score}. Нажми «Старт» снова.`;
+
+      // Нарисуем красный экран на секунду
+      ctx.fillStyle = 'rgba(233, 69, 96, 0.3)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Управление клавиатурой
+    document.addEventListener('keydown', e => {
+      if (!running && (e.code === 'Space' || e.code === 'Enter')) { startGame(); return; }
+      if (e.code === 'ArrowUp'    || e.code === 'KeyW') { if (dir.y === 0) nextDir = { x: 0, y: -1 }; }
+      if (e.code === 'ArrowDown'  || e.code === 'KeyS') { if (dir.y === 0) nextDir = { x: 0, y:  1 }; }
+      if (e.code === 'ArrowLeft'  || e.code === 'KeyA') { if (dir.x === 0) nextDir = { x: -1, y: 0 }; }
+      if (e.code === 'ArrowRight' || e.code === 'KeyD') { if (dir.x === 0) nextDir = { x:  1, y: 0 }; }
+    });
+  </script>
+
+</body>
+</html>
