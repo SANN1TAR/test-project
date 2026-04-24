@@ -8,3 +8,4 @@ v0.4 — подключён GitHub: репозиторий SANN1TAR/test-project
 v0.5 — создан VERSIONS.txt (этот файл)
 v0.6 — CLAUDE.md обрезан в 2.5 раза: убраны примеры, лишние объяснения, блок подготовки к проекту
 v0.7 — добавлен transcribe.py: расшифровка MP4 вебинаров с поминутными таймкодами через faster-whisper
+v0.8 — добавлен convert_webm.bat, обновлены DOCS.txt и SESSION_LOG.txt по задаче монтажа вебинаров
